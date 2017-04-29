@@ -1,0 +1,25 @@
+{
+  "name": "react-node-babel",
+  "version": "1.0.0",
+  "description": "A React, Node and Babel training course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UncommonConcept/learn-frontend-in-48-hours.git"
+  },
+  "keywords": [
+    "react",
+    "babel",
+    "node",
+    "tutorial"
+  ],
+  "author": "Patrick Sears <patrick@uncommonconcept.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UncommonConcept/learn-frontend-in-48-hours/issues"
+  },
+  "homepage": "https://github.com/UncommonConcept/learn-frontend-in-48-hours#readme"
+}
