@@ -97,6 +97,9 @@ const other = [ 1, 2, ...params ] // [ 1, 2, "hello", true, 7 ]
 const str = "foo"
 const chars = [ ...str ] // [ "f", "o", "o" ]
 
+const obj = { a: 1, b: 2 }
+const obj2 = { c: 3, ...obj }
+
 // /-- IN ES5: --\ //
 var params = [ "hello", true, 7 ];
 var other = [ 1, 2 ].concat(params); // [ 1, 2, "hello", true, 7 ]
@@ -183,7 +186,8 @@ const [ a, b ] = list; // You can extract values
 
 // /-- IN ES5: --\ //
 var list = [ 1, 2, 3 ];
-var a = list[0], b = list[2];
+var a = list[0],
+    b = list[2];
 var tmp = a; a = b; b = tmp;
 
 
@@ -204,9 +208,13 @@ var e = obj.e === undefined ? 5 : obj.e;
 function f ([ name, val ]) {
     console.log(name, val);
 }
-function h ({ name, val }) {
+function h ({ name, val = 5, val2 = 3 } = {}) {
+// function h (args) {
+//   const { name, val } = args;
+//   // var name = args.name;
     console.log(name, val);
 }
+h();
 
 // /-- IN ES5: --\ //
 function f (arg) {
@@ -226,6 +234,8 @@ function h (arg) {
 // || ---- CLASSES ---- || //
 // ========================//
 class Shape {
+  static x;
+
     constructor (id, x, y) {
         this.id = id
         this.move(x, y);
