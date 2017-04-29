@@ -15,7 +15,9 @@ function runServer(request, response) {
 
 function responderFactory(serverResponse, queryParams) {
   const dataSource = 'https://jsonplaceholder.typicode.com/posts';
-  return https.get(dataSource, httpResponse => respondWithData(serverResponse, httpResponse, queryParams));
+  return https.get(dataSource,
+    httpResponse => respondWithData(serverResponse, httpResponse, queryParams)
+  );
 }
 
 function respondWithData(serverResponse, httpResponse, queryParams) {
@@ -23,6 +25,7 @@ function respondWithData(serverResponse, httpResponse, queryParams) {
     var data = '';
     httpResponse.on('data', function receiveData(d) {
       // You fill this in
+      console.log(d);
       data += d;
     });
 
