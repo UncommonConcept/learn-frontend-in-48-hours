@@ -1,5 +1,0 @@
-https://www.reddit.com/.json
-https://www.reddit.com/top/.json
-Now, pick a subreddit, for example, pics.
-/r/pics/.json?count=n
-/r/pics/top/.json?count=n

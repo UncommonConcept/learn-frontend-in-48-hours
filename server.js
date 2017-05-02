@@ -2,28 +2,9 @@ var express = require('express');
 var app = express();
 var fetch = require('isomorphic-fetch');
 
-// Promise {
-//   then(args)
-//   catch(error)
-
-//   Promise(resolve, reject) {}
-// }
-
-// var p = new Promise((resolve, reject) {
-//   doSomething();
-//   resolve();
-// })
-
 app.get('/', function (req, res) {
-   console.log(req.query);
-
-   const dataSource = 'https://jsonplaceholder.typicode.com/posts';
-   fetch(dataSource)
-    .then(r => r.json())
-    .then( (body) => {
-      res.json(body[req.query.n]);
-    })
-    .catch(error => console.log(error));
+  // We are going to re-create the code we had to write in the node-introduction branch
+  res.send('Hello World');
 })
 
 var server = app.listen(8081, function () {
