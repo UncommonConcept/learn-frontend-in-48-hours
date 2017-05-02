@@ -6,11 +6,10 @@ http.createServer(runServer).listen(8081);
 
 function runServer(request, response) {
   console.log('Received a request!');
-  const incomingUrl = url.parse(request.url);
-  console.log(incomingUrl.query);
+  const incomingUrl = url.parse(request.url, true);
+  console.log(incomingUrl);
 
-  const params = getParams(incomingUrl.query);
-  return responderFactory(response, params);
+  return responderFactory(response, incomingUrl.query);
 }
 
 function responderFactory(serverResponse, queryParams) {
@@ -25,7 +24,6 @@ function respondWithData(serverResponse, httpResponse, queryParams) {
     var data = '';
     httpResponse.on('data', function receiveData(d) {
       // You fill this in
-      console.log(d);
       data += d;
     });
 
