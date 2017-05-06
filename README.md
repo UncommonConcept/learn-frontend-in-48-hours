@@ -73,7 +73,12 @@ You'll notice that each router builds upon the ones below it. In this way, the E
 ### Discussion about what happened above
 
 # Exercise:
-You will now implement the Reddit homepage API paths: `/`, `/top`, `/new`, `/rising` given the structure we have built above. For each path, you will create a new route.
+You will now implement the Reddit homepage API paths: `/`, `/top`, `/new`, `/rising` given the structure we have built above.
+
+You will also implement the subreddit paths:
+`/api/subreddit/pics/top`
+This will hit the Reddit subreddit paths:
+`www.reddit.com/r/pics/top`
 
 Use the generalized function you wrote in the first exercise to retrieve these. You will be using Promises and async programming to execute this task. Please ask for help if you need help writing these - I don't expect you to know how to do this! You are learning by doing.
 
