@@ -16,10 +16,9 @@ npm i --save-dev body-parser cookie-parser multer http-status-codes
 ### Create your simplest server.
 Start with the server in `src/index.js`, which builds on the project we built in the first session.
 
-
-### Exercise:
+# Exercise:
 Build a server API that does the following:
 - Accepts a GET request on the '/' index route, and returns the Reddit JSON for that same route.
 - Generalize this function so that it can retrieve the JSON for any reddit path
-  - Reddit paths are /, r/<subreddit>
-  - Each one can also have top, new, hot
+  - Reddit paths are `/` for the homepage and `/r/<subreddit>` for subreddits
+  - Each one can also have top, new, rising (and a few others - we'll stick to these 3)
