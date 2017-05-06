@@ -1,6 +1,7 @@
 var express = require('express');
-var app = express();
 var fetch = require('isomorphic-fetch');
+var HttpStatus = require('http-status-codes');
+var app = express();
 
 app.get('/', function (req, res) {
    console.log(req.query);
@@ -9,7 +10,7 @@ app.get('/', function (req, res) {
    fetch(dataSource)
     .then(r => r.json())
     .then( (body) => {
-      res.json(body[req.query.n]);
+      res.status(HttpStatus.OK).json(body[req.query.n]);
     })
     .catch(error => console.log(error));
 });

@@ -10,25 +10,12 @@ Nodemon is a package that allows you to watch your project for changes, and it w
 
 ### You will also need some helper modules:
 ```
-npm i --save-dev body-parser cookie-parser multer
+npm i --save-dev body-parser cookie-parser multer http-status-codes
 ```
 
-### Create your simplest server. Start with a file called index.js:
-``` js
-var express = require('express');
-var app = express();
+### Create your simplest server.
+Start with the server in index.js, which builds on the project we built in the first session.
 
-app.get('/', function (req, res) {
-   res.send('Hello World');
-})
-
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-
-   console.log("Example app listening at http://%s:%s", host, port)
-})
-```
 
 ### Exercise:
 Build a server API that does the following:
