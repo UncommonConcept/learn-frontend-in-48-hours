@@ -10,6 +10,17 @@ We will break our app into:
 - Controllers
 - Routes
 
+### A little housekeeping
+Let's move the helper functions we created in the last exercise, to get an arbitrary Reddit url, into a utils file and export them.
+
+Create a file `src/utils.js` and into that file, paste the functions. For each function signature, change the signature to export the function as a named export:
+
+```
+export function someFunc(a) { } ...
+```
+
+Remove these functions from your `src/index.js` file. If you have nodemon running, babel will now through ugly errors about the functions not being found. Don't worry. We're going to be moving alot of things around.
+
 ### Let's get started with our controllers
 1. Create a folder inside the `src` directory called `controllers`
 2. Inside this folder, you will create your functions that execute your _*business logic*_.
