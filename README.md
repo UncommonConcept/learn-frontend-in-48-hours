@@ -78,16 +78,16 @@ You will now implement the Reddit homepage API paths: `/`, `/top`, `/new`, `/ris
 You will also implement the subreddit paths:
 `/api/subreddit/pics/top`
 This will hit the Reddit subreddit paths:
-`www.reddit.com/r/pics/top`
+`www.reddit.com/r/pics/top/.json`
 
 Use the generalized function you wrote in the first exercise to retrieve these. You will be using Promises and async programming to execute this task. Please ask for help if you need help writing these - I don't expect you to know how to do this! You are learning by doing.
 
 Let's get this done in this session. In the next session we will begin building our frontend.
 
 ## Bonus points
-Can you find a way to do this that does not require creating individual routes for each of `top`, `new`, `rising`?
+Can you find a way to do this that does not require creating individual routes for `home.js` and `subreddit.js`?
 
-Hint: You will use URL parameters. Here is an example of handling a URL parameter for a given route:
+Hint: You will use URL parameters. Remember our example of handling a URL parameter for a given route:
 
 ```
 const router = express.Router();
