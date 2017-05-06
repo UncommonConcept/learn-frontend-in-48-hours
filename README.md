@@ -14,7 +14,7 @@ npm i --save-dev body-parser cookie-parser multer http-status-codes
 ```
 
 ### Create your simplest server.
-Start with the server in index.js, which builds on the project we built in the first session.
+Start with the server in `src/index.js`, which builds on the project we built in the first session.
 
 
 ### Exercise:
