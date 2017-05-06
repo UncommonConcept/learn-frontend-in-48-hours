@@ -1,6 +1,8 @@
 # From this branch forward, we will be building our Reddit application.
 ### In this lesson, we will be building the backend API. While this is not strictly necessary (since Reddit provides its own open JSON API), this will allow us to demonstrate the relevant principles of express and Node, while avoiding the usage and creation of a far more complex backend.
 
+In the real world you would add a database and an ORM to most server projects. The most popular and best supported of these in the Node world is called `sequelize`.  It supports Mysql, Postgresql, SqlLite, and MSSQL. It supports models, migrations and stored procedures.
+
 ### Let's get started with packages, servers and Express.
 ```
 npm i --save-dev express nodemon
