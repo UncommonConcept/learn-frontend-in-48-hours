@@ -2,7 +2,7 @@
   "name": "react-node-babel",
   "version": "1.0.0",
   "description": "A React, Node and Babel training course",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "babel": "babel --presets es2015,stage-0 -w src/ -d build/",
     "test": "echo \"Error: no test specified\" && exit 1",
