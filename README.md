@@ -1,9 +1,14 @@
 # From this branch forward, we will be building our Reddit application.
+
+### Adding error handlers
+In an ideal world, our apps never fail. In the real world, we know that doesn't happen, and we need error handlers.
+
+We will walk through the creation of the error handler code together. You'll be writing these with me, copying from the screen, so you can get a feel for how Express handles requests. After this, we'll use the higher-level abstractions in Express so you won't be writing these directly again.
+
 ### In this lesson, we will structure our application the way it will need to be going forward.
 We will break our app into:
 - Controllers
 - Routes
-- Models (we'll do this later, and very limited - this is not a DB course)
 
 ### Let's get started with our controllers
 1. Create a folder inside the `src` directory called `controllers`

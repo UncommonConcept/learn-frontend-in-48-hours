@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "babel": "babel --presets es2015,stage-0 -w src -d build",
+    "build": "babel --presets es2015,stage-0 src -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run babel | nodemon --watch build"
   },
