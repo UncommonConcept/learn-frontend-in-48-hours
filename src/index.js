@@ -30,6 +30,6 @@ function getRedditContent(subreddit, category) {
 
 function getRedditPath(subreddit, category) {
   const rPath = subreddit ? `r/${subreddit}` : '';
-  const rFullPath = rPath ? `${rPath}/${category}` : '';
+  const rFullPath = rPath ? `${rPath}${category ? `/${category}` : ''}` : '';
   return `${REDDIT_HOST}${rFullPath}/.json`;
 }
