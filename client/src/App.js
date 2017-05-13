@@ -4,9 +4,9 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  const { title, content } = this.props;
-
   render() {
+    const { title, content } = this.props;
+
     return (
       <div className="App">
         <div className="App-header">
