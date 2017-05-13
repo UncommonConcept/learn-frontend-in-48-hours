@@ -30,8 +30,10 @@ const { title, content } = this.props;
 5. Add the following two lines to `src/index.js`, AFTER the imports:
 ```
 const title = 'Welcome to React';
-const content = `<span>To get started, edit <code>src/App.js</code> and save to reload.</span>`;
+const content = <span>To get started, edit <code>src/App.js</code> and save to reload.</span>;
 ```
+Be sure not to add quotes around the `content` line!
+
 6. In `src/index.js`, change `<App />` to the following:
 ```
 <App title={title} content={content} />
@@ -65,4 +67,28 @@ App.defaultProps = {
 };
 ```
 React only looks for the `propTypes` and `defaultProps` keys during development. In production (when the NODE_ENV flag was set to `production` when building), this code is a no-op and in fact gets stripped out by Webpack (called `TREE SHAKING`).
+5. Now, in `src/index.js`, remove the `content` property from `<App />`. When the page reloads, what do you see for the page content?
 
+#### Events
+At the core of any non-trivial web application is the concept of *Events*. These are anything from `onclick` and `onmouseover` to `window.beforeunload` and `navigator.onLine`.
+
+React includes a full cross-browser event system that you can use for the vast majority of events (it does not support events like `window.beforeunload` but you can still handle them. We will see this later). React introduces the concept of a *Synthetic Event*. We will discuss this in class. Let's add some events to our application to see how they work.
+
+1. Open `src/App.js` and add a button below our content paragraph:
+```
+        <p className="App-intro">
+          {content}
+        </p>
+        <button className='App-Button'>Click me!</button>
+```
+2. Naturally we want to know when this button is clicked. Add the following to the Button's properties:
+```
+onClick={this.handleButtonClick}
+```
+3. Now we need a method to handle this click. Add the following method to the class:
+```
+handleButtonClick = (event) => {
+  console.log('You clicked me!');
+  alert('You clicked me!');
+}
+```

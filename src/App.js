@@ -4,6 +4,11 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  handleButtonClick = (event) => {
+    console.log('You clicked me!');
+    alert('You clicked me!');
+  }
+
   render() {
     const { title, content } = this.props;
 
@@ -16,6 +21,7 @@ class App extends Component {
         <p className="App-intro">
           {content}
         </p>
+        <button className='App-Button' onClick={this.handleButtonClick}>Click me!</button>
       </div>
     );
   }
