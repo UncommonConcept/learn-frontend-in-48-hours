@@ -5,7 +5,7 @@ class ImageRotator extends Component {
   constructor(props) {
     super(props);
 
-    this.divDOMNode = null;
+    this.imageDOMNode = null;
     this.state = {
       imageLoaded: false,
       imageError: false,
@@ -13,15 +13,17 @@ class ImageRotator extends Component {
   }
 
   componentWillMount() {
-    console.log('componentWillMount: DOM node is currently: ', this.divDOMNode);
+    console.log('componentWillMount: DOM node is currently: ', this.imageDOMNode);
   }
 
   componentDidMount() {
-    console.log('componentDidMount: DOM node is currently: ', this.divDOMNode);
+    // What is wrong with this console.log?
+    console.log('componentDidMount: DOM node is currently: ', this.imageDOMNode);
+    if(this.imageDOMNode) { this.imageDOMNode.src = 'https://react-etc.net/files/2016-07/logo-578x270.png'; }
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount: DOM node is currently: ', this.divDOMNode);
+    console.log('componentWillUnmount: DOM node is currently: ', this.imageDOMNode);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,18 +49,33 @@ class ImageRotator extends Component {
     this.setState({ imageLoaded: false, imageError: true });
   }
 
+  captureImageRef = (ref) => {
+    this.imageDOMNode = ref;
+  }
+
+  renderImageList = (images: Array<>) => {
+    // This produces a React warning on the console
+    return images.map((img) => {
+      return <img src={img} alt='' />;
+    });
+  }
+
   render() {
     const { imageLoaded, imageError } = this.state;
     const { imageSource } = this.props;
     const currentStatus = imageError ? 'Error'
                           : imageLoaded ? 'Loaded' : 'Loading';
+    const imageList = [imageSource, imageSource, imageSource];
 
     return (
       <div>
-        <img src={imageSource} onLoad={this.handleImageLoaded} onError={this.handleImageError} alt='' />
+        <img ref={this.captureImageRef} src={imageSource} onLoad={this.handleImageLoaded} onError={this.handleImageError} alt='' />
         <p>
           Image status: {imageSource ? currentStatus : 'Pick an image'}
         </p>
+        <div>
+          {this.renderImageList(imageList)}
+        </div>
       </div>
     );
   }

@@ -21,6 +21,35 @@ class App extends Component {
     }
   }
 
+  componentDidMount () {
+    // Defer creating _debouncedResize until it's mounted
+    // This allows users to change DEBOUNCE_TIME if they want
+    // If there's no listeners, we need to attach the window listener
+    window.addEventListener('resize', this.onResize, false);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.onResize, false);
+  }
+
+  onResize = () => {
+    const windowWidth = window.innerWidth ||
+                        document.documentElement.clientWidth ||
+                        document.body.clientWidth;
+    const windowHeight = window.innerHeight ||
+                         document.documentElement.clientHeight ||
+                         document.body.clientHeight;
+
+    const eventData = {
+      window: {
+        width: windowWidth,
+        height: windowHeight,
+      },
+    };
+
+    console.log('Window resized! Event data: ', eventData);
+  }
+
   handleClick = () => {
     let newIndex = this.state.imageIndex + 1;
     let newImage = this.state.currentImage;

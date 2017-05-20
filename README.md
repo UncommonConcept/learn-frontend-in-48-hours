@@ -10,4 +10,3 @@ React has some unique features that are important to know. These include:
 * Grab the image DOM element and change its image source
 * Instead of rendering the image once, do it 3 times!
 * Let's listen to the window.onresize event
-* In this App.js, instead of creating a component for Header, use a function and call it inside the render function.
