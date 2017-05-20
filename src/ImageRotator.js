@@ -54,7 +54,7 @@ class ImageRotator extends Component {
   }
 
   renderImageList = (images: Array<>) => {
-    // This produces a React warning on the console
+    // This produces a React warning on the console. We fix it by assigning a unique key to each rendered element.
     return images.map((img) => {
       return <img src={img} alt='' />;
     });

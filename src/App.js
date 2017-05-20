@@ -22,13 +22,11 @@ class App extends Component {
   }
 
   componentDidMount () {
-    // Defer creating _debouncedResize until it's mounted
-    // This allows users to change DEBOUNCE_TIME if they want
-    // If there's no listeners, we need to attach the window listener
     window.addEventListener('resize', this.onResize, false);
   }
 
   componentWillUnmount () {
+    // What happens if I don't call this here?
     window.removeEventListener('resize', this.onResize, false);
   }
 
@@ -63,6 +61,7 @@ class App extends Component {
     }
 
     this.setState({ currentImage: newImage, imageIndex: newIndex });
+    // What happens if I use access the state right here?
   }
 
   render() {

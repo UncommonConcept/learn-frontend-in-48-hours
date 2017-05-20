@@ -1,12 +1,10 @@
 # Advanced React
 
-React has some unique features that are important to know. These include:
-* How to interact with the actual browser DOM
-* How to handle component arrays
-* How to handle events outside of React without creating memory leaks
-* Functions that return components or partial views
+I have left a number of comments throughout the exercises to point out where people commonly make mistakes. These are:
+* Expecting console.log messages to always accurately display up-to-date information. Remember, Javascript is inherently async, and so is console.log
+* Not verifying that props have actually changed in componentWillReceiveProps
+* Calling setState in places that cause infinite loops in lifecycle methods, such as setState in componentWillUpdate
+* Immediately using the component state after calling setState
+* Forgetting to assign a unique key to rendered React elements in an array
 
-## Exercise
-* Grab the image DOM element and change its image source
-* Instead of rendering the image once, do it 3 times!
-* Let's listen to the window.onresize event
+I leave it as a classroom exercise to fix these.
