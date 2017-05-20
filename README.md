@@ -12,60 +12,40 @@ Later, we will apply what we learned to our Reddit application.
 
 # Install & setup
 1. Begin by installing the package:
-`yarn add react-router`
+`yarn add react-router-dom`
 
-2. Add the router to the root of the app. We actually need to create it!
+2. Add the router to the root of the app. We actually need to create it! So create a file `Root.js` at the app root.
 ```
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Link
+} from 'react-router-dom';
+import App from './App';
 
 export default class Root extends Component {
   render() {
     return (
-      <div>
-        {this.props.children}
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={Home} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
 ```
 
-What does this component do? This component will be rendered on every single page. It sits at the absolute highest level of the application. The `props.children` value will contain the component we are supposed to render. The beautiful part is - you do not need to worry about *how* this happens: only where to put the component!
+What does this component do? This component will be rendered on every single page. It sits at the absolute highest level of the application. The child routes immediately below this component are listed within it. Each Route component specifies the component it renders when the route it matches is visited. The beautiful part is - you do not need to worry about *how* this happens: only where to put the component and how to structure your routes.
 
-3. Add a core router
-* Create a file called routes.js
-* In that file, place the following:
-```
-import React from 'react';
-import { browserHistory, Route, Router, IndexRoute } from 'react-router'
-import Root from './Root';
-
-const router = () => (
-<Router history={browserHistory}>
-  <Route path="/" component={Root}>
-  </Route>
-</Router>);
-
-export default router;
-```
-
-4. Change `routes.js` to include the following:
-```
-import App from './App';
-
-...
-<Route path="/" component={Root}>
-  <IndexRoute component={App} />
-</Route>
-
-```
-
-5. Finally, render our Router in place of the App itself in `index.js`:
-Change `import App from './App';` to: `import Router from './routes';`
+3. Render our Root component in place of the App itself in `index.js`:
+Change `import App from './App';` to: `import Root from './Root';`
 
 Change the `ReactDOM.render` call to now use our Router as the core component:
 
 ```
-ReactDOM.render(<Router />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
 ```
 
 In the next session, we will investigate how React Router works, how to add various types of routes, and what props it provides our top level components.
