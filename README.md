@@ -29,7 +29,7 @@ export default class Root extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={App} />
         </div>
       </BrowserRouter>
     )
