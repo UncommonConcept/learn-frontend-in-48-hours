@@ -8,6 +8,7 @@ const images = [
   'http://lorempixel.com/640/480/city/',
   'http://lorempixel.com/640/480/nature/',
   'http://lorempixel.com/640/480/nightlife/',
+  'http://lorempixel.com/640/480/sports/',
 ];
 
 class App extends Component {
