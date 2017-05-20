@@ -18,6 +18,24 @@
   font-size: large;
 }
 
+ul {
+  list-style: none;
+  text-align: center;
+}
+
+ul > li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+ul > li:first-child {
+  margin-left: 0;
+}
+
+ul > li:last-child {
+  margin-right: 0;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
