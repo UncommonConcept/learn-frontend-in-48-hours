@@ -1,51 +1,70 @@
 # React-Router
 
-Up to now, we have only focused on how to create components, and how to React within a single component or a component tree. What we have not talked about yet is the concept of *Pages*, which any non-trivial app will certainly contain.
+In this set of exercises, we are going to learn how to use React Router and its various features. Among these:
 
-But we immediately run into a problem when we think about creating pages within our application: Given that React applications are designed to run entirely in the browser, and bundles of javascript and CSS are downloaded whenever we hit the server, we suddenly bring in a great deal more overhead to navigate between pages.
+* Menus
+* Exact route matching
+* Fuzzy route matching with <Switch>
+* Route params
+* Route queries
+* 404 routing
+* The Link component
+* Programmatic route control with `history`
 
-Thus, the concept of routing was born in modern javascript applications. All major frontend frameworks, including React, include some form of routing.
+## Build the exercise pages
 
-In React, there are several routing solutions. The most common of them is _*react-router*_. This exercise will walk us through a very, very simple application to understand how to implement it.
+We will examine React Router's features by building a set of sample pages to demonstrate its functionality. This is a very simple app we will use to understand Router before we attempt to build this into our Reddit application.
 
-Later, we will apply what we learned to our Reddit application.
+We already have our Root component and our App. We will be adding a simple navigation menu and set of sub pages.
 
-# Install & setup
-1. Begin by installing the package:
-`yarn add react-router-dom`
+### A simple menu
+Let's create a Header component like we did in the previous exercises. Only this time we will be using it differently!
 
-2. Add the router to the root of the app. We actually need to create it! So create a file `Root.js` at the app root.
+1. Create Header.js and add the following import, aside from the normal required React ones:
 ```
-import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Link
-} from 'react-router-dom';
-import App from './App';
+import { Link, Route } from 'react-router-dom';
+```
 
-export default class Root extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Route exact path="/" component={Home} />
+Now, move the following from App.js into Header.js in the render. You will need a root node, remember:
+```
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
         </div>
-      </BrowserRouter>
-    )
-  }
+
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+```
+
+Add the following to the Header.js component, below the `App-header` div:
+```
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/topics">Topics</Link></li>
+        </ul>
+
+        <hr/>
+```
+
+Add the required CSS to App.css to make our menu a bit more usable:
+```
+ul {
+  list-style: none;
+  text-align: center;
+}
+
+ul > li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+ul > li:first-child {
+  margin-left: 0;
+}
+
+ul > li:last-child {
+  margin-right: 0;
 }
 ```
-
-What does this component do? This component will be rendered on every single page. It sits at the absolute highest level of the application. The child routes immediately below this component are listed within it. Each Route component specifies the component it renders when the route it matches is visited. The beautiful part is - you do not need to worry about *how* this happens: only where to put the component and how to structure your routes.
-
-3. Render our Root component in place of the App itself in `index.js`:
-Change `import App from './App';` to: `import Root from './Root';`
-
-Change the `ReactDOM.render` call to now use our Router as the core component:
-
-```
-ReactDOM.render(<Root />, document.getElementById('root'));
-```
-
-In the next session, we will investigate how React Router works, how to add various types of routes, and what props it provides our top level components.
