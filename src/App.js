@@ -29,6 +29,7 @@ class App extends Component {
   }
 
   componentWillUnmount () {
+    // What happens if I don't call this here?
     window.removeEventListener('resize', this.onResize, false);
   }
 
@@ -63,6 +64,7 @@ class App extends Component {
     }
 
     this.setState({ currentImage: newImage, imageIndex: newIndex });
+    // What happens if I use access the state right here?
   }
 
   render() {
