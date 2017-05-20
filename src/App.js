@@ -21,7 +21,7 @@ class App extends Component {
 
   handleClick = () => {
     this.imageIndex++;
-    if(this.imageIndex > 2) {
+    if(this.imageIndex > images.length - 1) {
       this.imageIndex = 0;
     }
     this.currentImage = images[this.imageIndex];
