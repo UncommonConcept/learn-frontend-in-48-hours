@@ -1,4 +1,18 @@
 .Reddit-Menu {
-  height: 50px;
+  height: 40px;
+  line-height: 40px;
+  background: #FFF;
+  margin-bottom: 10px;
 }
 
+.Reddit-Menu-Dropdown {
+  padding: 0 16px;
+}
+
+.Reddit-Menu-Category-Item {
+  padding: 8px;
+}
+
+.Reddit-Menu-Category-Item:first-child {
+  padding-left: 0;
+}
