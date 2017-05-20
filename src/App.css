@@ -22,3 +22,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+button {
+  height: 40px;
+  width: 135px;
+  border: 1px solid aqua;
+  border-radius: 8px;
+  background-color: lightskyblue;
+}

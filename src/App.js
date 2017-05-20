@@ -8,23 +8,32 @@ const images = [
   'http://lorempixel.com/640/480/city/',
   'http://lorempixel.com/640/480/nature/',
   'http://lorempixel.com/640/480/nightlife/',
+  'http://lorempixel.com/640/480/sports/',
 ];
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.currentImage = images[0];
-    this.imageIndex = 0;
+    this.state = {
+      currentImage: images[0],
+      imageIndex: 0,
+    }
   }
 
   handleClick = () => {
-    this.imageIndex++;
-    this.currentImage = images[this.imageIndex];
-    if(this.imageIndex > 2) {
-      this.imageIndex = 0;
+    let newIndex = this.state.imageIndex + 1;
+    let newImage = this.state.currentImage;
+    if(newIndex > images.length - 1) { newIndex = 0; }
+
+    // ignore sports
+    if(images[newIndex].indexOf('sports') < 0) {
+      newImage = images[newIndex];
+    } else {
+      alert('No way man!');
     }
-    this.forceUpdate();
+
+    this.setState({ currentImage: newImage, imageIndex: newIndex });
   }
 
   render() {
@@ -38,11 +47,11 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-          <button onClick={this.handleClick}>Update image</button>
+          <button onClick={this.handleClick}>I'm feeling lucky!</button>
         </p>
-        <p>
-          <ImageRotator />
-        </p>
+        <div>
+          <ImageRotator imageSource={this.state.currentImage} />
+        </div>
       </div>
     );
   }
