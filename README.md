@@ -1,12 +1,16 @@
-# React is just Javascript!
+# Bringing React-Router into the Reddit application
 
-## Building a Layout
-In this exercise we will build a layout. This will comprise several steps:
+In the previous exercises we saw how to install, configure, and use React Router v4. In this exercise, we will use that knowledge to implement the router in our Reddit project.
 
-1. Break up the existing App.js into individual components
-2. Add a footer and a menu
-3. Build an Avatar component, using *Composition* to create a complex component.
+By now, you should recognize the conventions being used by React Router v4 as being very similar to routing in Express. Each component defines what they render for their own route, as well as defining the first-level routes immediately below them.
 
-We'll work through these together. The completed solution is in `reddit-project-frontend-03`.
+Without laboring the details, complete the following exercises in class:
 
-If we get through this before the end of the session, we will move on to the component lifecycle and state.
+* Create the Root component to house the entire Routed application
+* Adjust the App component to define the application's routes. We will probably only have 3 routes:
+    * Homepage
+    * Subreddit
+    * Post
+* Adjust the App component to define what it renders for the home route - this should be the Reddit homepage
+* Implement the subpages
+
