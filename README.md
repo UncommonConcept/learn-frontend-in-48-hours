@@ -1,11 +1,13 @@
 # Advanced React
 
-Building components is pretty straightforward, but we can't do much if all we can do is spit out static HTML. We want our app to have rich behavior, driven by stateful components and complex interactions.
-
-We do this in React by means of the *Lifecycle Methods* and *the state*. You can think of React as one big state machine, stepping through each state change, and at each step, a lifecycle method handles that particular state. This is the core method by which React's one-way data flow emerges.
-
-In the coming exercises we will learn how React manages state.
+React has some unique features that are important to know. These include:
+* How to interact with the actual browser DOM
+* How to handle component arrays
+* How to handle events outside of React without creating memory leaks
+* Functions that return components or partial views
 
 ## Exercise
-* Enable the button on the App main page to change the image in the image rotator component.
-* Add a filter so that the image from the 'sports' category is not rendered.
+* Grab the image DOM element and change its image source
+* Instead of rendering the image once, do it 3 times!
+* Let's listen to the window.onresize event
+* In this App.js, instead of creating a component for Header, use a function and call it inside the render function.
