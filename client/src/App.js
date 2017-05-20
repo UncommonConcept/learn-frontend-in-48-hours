@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
+
 import { Header } from './Header';
 import RedditMenu from './RedditMenu';
 import { Content } from './Content';
@@ -8,13 +10,15 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const { content } = this.props;
+    // const { content } = this.props;
 
     return (
       <div className="App container-fluid">
         <Header />
-        <RedditMenu />
-        <Content content={content} />
+
+        <Route path='/' component={RedditMenu} />
+        <Route path='/' component={Content} />
+        {/*<Route path='/subreddit/:sub' component={} />*/}
         <Footer />
       </div>
     );

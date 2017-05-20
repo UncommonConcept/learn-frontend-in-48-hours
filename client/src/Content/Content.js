@@ -34,7 +34,7 @@ Content.propTypes = {
 };
 
 Content.defaultProps = {
-  content: <div className='container-div'><span>I am the very model of a modern major general!</span></div>,
+  content: '',//<div className='container-div'><span>I am the very model of a modern major general!</span></div>,
 };
 
 export default Content;
