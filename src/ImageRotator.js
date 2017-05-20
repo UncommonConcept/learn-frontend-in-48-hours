@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 export default class ImageRotator extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class ImageRotator extends Component {
   render() {
     return (
       <div>
-        <img src={""} />
+        <img src={""} alt='' />
       </div>
     );
   }

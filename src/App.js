@@ -20,10 +20,11 @@ class App extends Component {
 
   handleClick = () => {
     this.imageIndex++;
-    this.currentImage = images[this.imageIndex];
     if(this.imageIndex > 2) {
       this.imageIndex = 0;
     }
+    this.currentImage = images[this.imageIndex];
+
     this.forceUpdate();
   }
 
@@ -40,9 +41,9 @@ class App extends Component {
         <p>
           <button onClick={this.handleClick}>Update image</button>
         </p>
-        <p>
+        <div>
           <ImageRotator />
-        </p>
+        </div>
       </div>
     );
   }
