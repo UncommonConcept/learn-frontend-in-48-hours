@@ -11,8 +11,12 @@ const images = [
 ];
 
 class App extends Component {
-  currentImage = images[0]
-  imageIndex = 0
+  constructor(props) {
+    super(props);
+
+    this.currentImage = images[0];
+    this.imageIndex = 0;
+  }
 
   handleClick = () => {
     this.imageIndex++;
