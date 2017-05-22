@@ -2,23 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderMenu from './HeaderMenu';
 import HeaderBanner from './HeaderBanner';
+import RedditMenu from './RedditMenu';
 
 const Header = (props) => {
-  const { currentRedditTitle } = props;
-  const bannerImage = 'http://placehold.it/1280x200';
+  const { bannerImage, match } = props;
 
   return <div className="App-header">
            <HeaderMenu />
-           <HeaderBanner bannerImage={bannerImage} currentRedditTitle={currentRedditTitle} />
+           <HeaderBanner bannerImage={bannerImage}
+                         subreddit={match.params.sub} />
+           <RedditMenu {...props} />
          </div>
 }
 
 Header.propTypes = {
-  currentRedditTitle: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired,
+  bannerImage: PropTypes.string.isRequired,
 };
 
 Header.defaultProps = {
-  currentRedditTitle: 'birdsForScale',
+  bannerImage: 'http://placehold.it/1280x200',
 };
 
 export default Header;

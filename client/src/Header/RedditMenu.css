@@ -11,6 +11,16 @@
 
 .Reddit-Menu-Category-Item {
   padding: 8px;
+  text-decoration: none;
+}
+
+.Reddit-Menu-Category-Item:focus,
+.Reddit-Menu-Category-Item:active {
+  text-decoration: none;
+}
+
+.Reddit-Menu-Category-Item.active {
+  color: red;
 }
 
 .Reddit-Menu-Category-Item:first-child {

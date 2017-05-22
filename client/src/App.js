@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
-import { Header } from './Header';
-import RedditMenu from './RedditMenu';
-import { Content } from './Content';
-import Footer from './Footer';
+import DefaultLayout from './DefaultLayout';
+import Content from './Content';
 import './App.css';
 
 class App extends Component {
   render() {
-    // const { content } = this.props;
 
     return (
       <div className="App container-fluid">
-        <Header />
-
-        <Route path='/' component={RedditMenu} />
-        <Route path='/' component={Content} />
-        {/*<Route path='/subreddit/:sub' component={} />*/}
-        <Footer />
+        <Switch>
+          <DefaultLayout path='/' exact         component={Content} />
+          <DefaultLayout path='/subreddit/:sub' component={Content} />
+          <DefaultLayout path='/:category'      component={Content} />
+        </Switch>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import LinkComponent from './LinkComponent';
 import PicComponent from './PicComponent';
+import './Avatar.css';
 
 const Avatar = (props) => {
   const { user } = props;

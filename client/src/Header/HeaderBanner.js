@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const HeaderBanner = (props) => {
-  const { currentRedditTitle, bannerImage } = props;
+  const { subreddit, bannerImage } = props;
+  const bannerLink = subreddit ? `/subreddit/${subreddit}` : '/';
 
   return (
-    <div>
+    <div className='relative'>
       <img src={bannerImage} className="App-logo" alt="avatar" />
-      <h2>{currentRedditTitle}</h2>
+      <Link className='App-header-title' to={bannerLink}><h2>{subreddit || 'reddit'}</h2></Link>
     </div>
   );
 }
 
 HeaderBanner.propTypes = {
-  currentRedditTitle: PropTypes.string.isRequired,
+  bannerImage: PropTypes.string.isRequired,
+  subreddit: PropTypes.string,
 };
 
 export default HeaderBanner;
