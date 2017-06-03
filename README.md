@@ -66,18 +66,20 @@ const reducer = combineReducers({
 });
 ```
 
-// Finally, create the store:
 ```
+// Finally, create the store:
 const initialState = {};
 
 // Also apply our middleware for navigating
 const store = createStore(reducer, initialState, applyMiddleware(middleware));
 ```
 
+```
 // Let's make our lives a little easier:
 store.subscribe(() => {
   console.log('Store changed: ', store.getState());
 });
+```
 
 3. Export the store and history:
 ```
@@ -123,14 +125,15 @@ const savePosts = (posts) => {
 };
 
 export {
-  updatePosts,
+  savePosts,
 };
 ```
 
 ### Finally, use our shiny new Redux setup
-1. In `src/App.js` import the store:
+1. In `src/App.js` import the store and the action creator we just made:
 ```
 import { store } from './store';
+import { savePosts } from './actions';
 ```
 
 Now, add a button to `src/App.js`. In that button's click handler, place the following:
