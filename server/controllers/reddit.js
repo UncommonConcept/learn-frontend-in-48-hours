@@ -11,14 +11,19 @@ export class Reddit {
   searchReddit = (req, res) => {
     console.log('searchReddit using query: ', req.query);
     const searchTerm = req.query.searchTerm;
+    if(!searchTerm) {
+      res.status(HttpStatus.NOT_FOUND).json({ error: 'Search term cannot be empty'});
+      return;
+    }
+
     const url = `https://www.reddit.com/search.json?q=${searchTerm}`;
     return fetch(url)
       .then(res=>res.json())
       .then(body => {
-        res.send(body);
+        res.status(HttpStatus.OK).json(body);
       })
       .catch(error => {
-        res.status(500).send({ error });
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ error });
       });
   }
 

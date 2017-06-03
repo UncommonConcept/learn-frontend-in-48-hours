@@ -9,18 +9,22 @@ Effect('downloadPosts', () => {
 });
 
 Effect('searchReddit', (searchTerm) => {
-  const url = `//${window.location.hostname}:8081/api/search?searchTerm=${searchTerm}`;
-  return fetch(url)
-    .then(res=>res.json())
-    .then(body => {
-      Actions.saveSearchResults({results: body});
-    });
+  if(searchTerm) {
+    const url = `//${window.location.hostname}:8081/api/search?searchTerm=${searchTerm}`;
+    return fetch(url)
+      .then(res=>res.json())
+      .then(body => {
+        Actions.saveSearchResults({results: body, searchTerm});
+      });
+  }
+  return Promise.resolve();
 });
 
 const subredditPosts = State({
   initial: {
     posts: [],
     searchResults: null,
+    searchTerm: null,
   },
 
   savePosts(state, payload) {
@@ -34,6 +38,7 @@ const subredditPosts = State({
     return {
       ...state,
       searchResults: payload.results,
+      searchTerm: payload.searchTerm,
     };
   },
 

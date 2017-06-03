@@ -24,7 +24,9 @@ class RedditMenu extends Component {
     event.stopPropagation();
     event.preventDefault();
     const search = this.searchInput.value;
-    Actions.searchReddit(search);
+    if(search) {
+      Actions.searchReddit(search);
+    }
   }
 
   captureInput = (ref) => {
