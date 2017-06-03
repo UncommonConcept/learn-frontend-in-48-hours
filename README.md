@@ -10,9 +10,9 @@ Jumpstate exports an object called `Effect` that is used to do this.
 Let's learn how to use this to make an API request in response to the button click in `src/App.js`.
 
 ### Update the store
-Open `src/reducers.js` and change the Jumpstate import to include `Effect`:
+Open `src/reducers.js` and change the Jumpstate import to include `Effect` and `Actions`:
 ```js
-import { State, Effect } from 'jumpstate';
+import { State, Effect, Actions } from 'jumpstate';
 ```
 
 Add an Effect that will make a network request and update the state:
