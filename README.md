@@ -26,7 +26,7 @@ import { store, history } from './store';
 
 2. Create the `Provider` and give it the store; create the `ConnectedRouter` component and give it the history:
 ```js
-const MainApp = (
+const MainApp = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App />
