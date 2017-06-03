@@ -1,5 +1,5 @@
 import express from 'express';
-import { Reddit, readRedditCategory } from '../controllers/reddit';
+import { Reddit } from '../controllers/reddit';
 
 const router = express.Router();
 

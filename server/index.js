@@ -1,10 +1,12 @@
 import express from 'express';
 import HttpStatus from 'http-status-codes';
+import cors from 'cors';
 
 import api from './routes/index';
 
 const app = express();
 
+app.use(cors());
 app.use('/api', api);
 
 // catch 404 and forward to error handler

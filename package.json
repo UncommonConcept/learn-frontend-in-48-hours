@@ -31,6 +31,7 @@
   "homepage": "https://github.com/UncommonConcept/learn-frontend-in-48-hours#readme",
   "dependencies": {
     "colors": "^1.1.2",
+    "cors": "^2.8.3",
     "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",
     "jumpstate": "^2.2.2",

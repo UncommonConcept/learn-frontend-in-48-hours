@@ -8,6 +8,20 @@ export class Reddit {
     this.reddit = reddit;
   }
 
+  searchReddit = (req, res) => {
+    console.log('searchReddit using query: ', req.query);
+    const searchTerm = req.query.searchTerm;
+    const url = `https://www.reddit.com/search.json?q=${searchTerm}`;
+    return fetch(url)
+      .then(res=>res.json())
+      .then(body => {
+        res.send(body);
+      })
+      .catch(error => {
+        res.status(500).send({ error });
+      });
+  }
+
   getRedditContent = (req, res) => {
     // // Uncomment these and see what this request is actually receiving
     // console.log('====== url ======');

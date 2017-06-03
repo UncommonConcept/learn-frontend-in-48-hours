@@ -1,5 +1,5 @@
 import express from 'express';
-import { Reddit, readRedditCategory } from '../controllers/reddit';
+import { Reddit } from '../controllers/reddit';
 
 const router = express.Router();
 
@@ -13,6 +13,7 @@ router.param('category', (req, res, next, category) => {
 
 // GET reddit index
 router.get('/', reddit.getRedditContent);
+router.get('/search', reddit.searchReddit);
 router.get('/:category', reddit.getRedditContent);
 
 export default router;
