@@ -18,10 +18,10 @@ import { State, Effect, Actions } from 'jumpstate';
 Add an Effect that will make a network request and update the state:
 ```js
 Effect('downloadPosts', () => {
-  return fetch('http://reddit.com/top/.json')
+  return fetch('https://www.reddit.com/top/.json')
     .then(res => res.json())
     .then(body => {
-      Actions.savePosts(body.data.children);
+      Actions.savePosts({posts: body.data.children});
     })
 });
 ```
@@ -36,7 +36,8 @@ In just a few lines, we have:
 ### Update our Action call in App.js
 Open `src/App.js` and change the Action call to call our new Effect:
 ```js
-Actions.downloadPosts();
+  Actions.downloadPosts()
+    .then(() => console.log('Done!'));
 ```
 
 You should delete the fake post data we have been using.

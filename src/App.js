@@ -4,11 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 
 const handleClick = () => {
-  const redditPosts = [
-    { id: '123', title: 'Post One' }
-  ];
-
-  Actions.savePosts({posts: redditPosts});
+  Actions.downloadPosts()
+    .then(() => console.log('Done!'));
 }
 
 class App extends Component {
