@@ -9,7 +9,7 @@ We will be learning how to directly bootstrap Redux, because it is important tha
 # Walkthrough
 ### Install the redux packages:
 ```bash
-yarn add redux react-redux react-router-redux history
+yarn add redux react-redux react-router-redux@next history
 ```
 NOTE: We are not actually using `react-router` or `history` in this exercise, but I want to show you how to set them up so that we know how to integrate them into our Reddit app.
 
