@@ -38,14 +38,14 @@ import { State } from 'jumpstate';
 Now, we will alter our reducer to use Jumpstate:
 ```js
 const subredditPosts = State({
-  initialState: {
+  initial: {
     posts: [],
   },
 
-  savePosts(state, payload) => {
+  savePosts(state, payload) {
     return {
       ...state,
-      posts: action.payload.posts,
+      posts: payload.posts,
     };
   },
 });
@@ -71,18 +71,18 @@ This also can get difficult to manage in any reasonably sized application. Jumps
 Open `src/App.js` and delete the store and action imports.
 
 Now add the Jumpstate import:
-```
+```js
 import { Actions } from 'jumpstate';
 ```
 
 Now replace the following line:
-```
+```js
 store.dispatch(savePosts(redditPosts));
 ```
 
 With the Jumpstate version:
-```
-Actions.savePosts(redditPosts);
+```js
+Actions.savePosts({posts: redditPosts});
 ```
 
 Simpler, no?
