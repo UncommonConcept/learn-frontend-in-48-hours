@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Actions } from 'jumpstate';
 
 import { InfoColumn, MainContentColumn, RedditCommunityColumn } from './Columns';
 import MainContent from './MainContent';
@@ -8,6 +9,10 @@ import './Content.css';
 const Content = (props) => {
   console.log('Content props: ', props);
   const { match, location, history, searchResults } = props; //eslint-disable-line
+
+  const sub = match.params.sub || '';
+  const category = match.params.category || '';
+  Actions.downloadPosts({sub, category});
 
   return (
     <div className="App-intro container-fluid no-padding">

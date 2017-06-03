@@ -10,6 +10,7 @@ export function getRedditContent(subreddit, category) {
 
 export function getRedditPath(subreddit, category) {
   const rPath = subreddit ? `/r/${subreddit}` : '';
-  const rFullPath = rPath ? `${rPath}${category ? `/${category}` : ''}` : '';
+  const rCategory = category ? `/${category}` : '';
+  const rFullPath = rPath ? `${rPath}${rCategory}` : rCategory;
   return `${REDDIT_HOST}${rFullPath}/.json`;
 }

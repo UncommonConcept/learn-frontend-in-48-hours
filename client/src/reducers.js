@@ -1,10 +1,26 @@
-import { State, Effect, Actions } from 'jumpstate';
+import { State, Effect, Hook, Actions } from 'jumpstate';
+import { LOCATION_CHANGE } from 'react-router-redux';
+const API_HOST = `//${window.location.hostname}:8081/api`;
 
-Effect('downloadPosts', () => {
-  return fetch('http://reddit.com/top/.json')
+Hook((action) => {
+  if(action.type === LOCATION_CHANGE) {
+    Actions.clearSearches();
+  }
+})
+
+Effect('downloadPosts', ({sub, category}) => {
+  // const url = 'http://reddit.com/top/.json';
+  let url;
+  if(!sub) {
+    url = `${API_HOST}/${category}`;
+  } else {
+    url = `${API_HOST}/subreddit/${sub}/${category}`;
+  }
+
+  return fetch(url)
     .then(res => res.json())
     .then(body => {
-      Actions.savePosts(body.data.children);
+      Actions.savePosts({posts: body.data});
     })
 });
 
@@ -31,6 +47,14 @@ const subredditPosts = State({
     return {
       ...state,
       posts: payload.posts,
+    };
+  },
+
+  clearSearches(state, payload) {
+    return {
+      ...state,
+      searchResults: null,
+      searchTerm: null,
     };
   },
 
