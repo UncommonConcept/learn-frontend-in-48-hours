@@ -9,7 +9,7 @@ Effect('downloadPosts', () => {
 });
 
 Effect('searchReddit', (searchTerm) => {
-  const url = `https://www.reddit.com/search.json?q=${searchTerm}`;
+  const url = `//${window.location.hostname}:8081/api/search?searchTerm=${searchTerm}`;
   return fetch(url)
     .then(res=>res.json())
     .then(body => {
