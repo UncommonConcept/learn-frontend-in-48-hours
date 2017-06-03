@@ -50,7 +50,7 @@ import reducers from './reducers'; // I know we don't have this file yet.
 ```
 
 2. Create our history and configure our store inputs:
-```
+```js
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createBrowserHistory();
 
@@ -66,7 +66,7 @@ const reducer = combineReducers({
 });
 ```
 
-```
+```js
 // Finally, create the store:
 const initialState = {};
 
@@ -74,7 +74,7 @@ const initialState = {};
 const store = createStore(reducer, initialState, applyMiddleware(...middleware));
 ```
 
-```
+```js
 // Let's make our lives a little easier:
 store.subscribe(() => {
   console.log('Store changed: ', store.getState());
@@ -92,7 +92,7 @@ Create a file `src/reducers.js`.
 Reducers are functions of pure state. I almost never need to import anything in these files. If you do, you are probably doing things in your reducer that you should not be, because external packages suggest your reducer is doing complex data processing, which is innappropriate for a reducer.
 
 1. Create a very simple reducer that looks like this:
-```
+```js
 const initialState = {
   posts: [],
 }
@@ -116,7 +116,7 @@ export default {
 The store is updated via *actions* that are *dispatched* on the store.
 
 1. Create a file called `actions.js`, and put the following:
-```
+```js
 const savePosts = (posts) => {
   return {
     type: 'SUBREDDIT_POSTS_DOWNLOADED',
