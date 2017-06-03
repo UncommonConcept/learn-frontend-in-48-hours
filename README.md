@@ -42,3 +42,50 @@ Actions.downloadPosts();
 You should delete the fake post data we have been using.
 
 Fire up the app and click the button. Take a look at the console and see what we received.
+
+## Using what we have learned
+Let's do an exercise with Jumpstate before beginning to integrate it into our app. We will create an input box that we will use to search Reddit.
+
+### Add the input box
+Open `src/App.js` and add an input box. Add a `ref` callback to capture the input, so that we can get its value for searching. Put the input box right next the button we have, that triggers the state update.
+
+```js
+<input type="text" ref={this.captureInput} />
+```
+
+Add the ref callback. I will leave that as an exercise for you.
+
+Now, change the button click to capture the value of the input box:
+```js
+const search = this.input.value;
+```
+
+Now, create an Effect that will search reddit:
+```js
+Effect('searchReddit', (searchTerm) => {
+  const url = `https://www.reddit.com/search.json?q=${searchTerm}`;
+  return fetch(url)
+    .then(res=>res.json())
+    .then(body => {
+      Actions.saveSearchresults({results: body});
+    });
+});
+```
+
+Now, create the reducer that will store the search results. Update the existing reducer to add an additional function:
+```js
+const subredditPosts = State({
+  ...
+
+  saveSearchResults(state, payload) => {
+    return {
+      ...state,
+      searchResults: payload.results,
+    };
+  },
+
+  ...
+});
+```
+
+Fire up the app and enter a search term and click the button to search. What do you see on the console when the state changes?
