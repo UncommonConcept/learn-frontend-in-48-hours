@@ -18,21 +18,22 @@ Effect('searchReddit', (searchTerm) => {
 });
 
 const subredditPosts = State({
-  initialState: {
+  initial: {
     posts: [],
+    searchResults: null,
   },
 
-  savePosts(state, action) {
+  savePosts(state, payload) {
     return {
       ...state,
-      posts: action.payload.posts,
+      posts: payload.posts,
     };
   },
 
-  saveSearchResults(state, action) {
+  saveSearchResults(state, payload) {
     return {
       ...state,
-      searchResults: action.payload.results,
+      searchResults: payload.results,
     };
   },
 
