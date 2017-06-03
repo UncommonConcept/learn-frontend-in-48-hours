@@ -71,7 +71,7 @@ const reducer = combineReducers({
 const initialState = {};
 
 // Also apply our middleware for navigating
-const store = createStore(reducer, initialState, applyMiddleware(middleware));
+const store = createStore(reducer, initialState, applyMiddleware(...middleware));
 ```
 
 ```
