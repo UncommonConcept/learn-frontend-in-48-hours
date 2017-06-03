@@ -30,7 +30,7 @@ Open `src/App.js` and add the following function to the bottom of the file, abov
 ```js
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.searchResults,
+    searchResults: state.subredditPosts.searchResults,
   };
 };
 ```
