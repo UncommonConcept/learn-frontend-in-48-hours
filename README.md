@@ -79,6 +79,8 @@ const store = createStore(reducer, initialState, applyMiddleware(...middleware))
 store.subscribe(() => {
   console.log('Store changed: ', store.getState());
 });
+
+window.getState = store.getState;
 ```
 
 3. Export the store and history:
@@ -99,6 +101,10 @@ const initialState = {
 
 function subredditPosts(state = initialState, action) {
   if(action.type === 'SUBREDDIT_POSTS_DOWNLOADED') {
+    // DON'T DO THIS
+    // state.posts = action.payload.posts;
+    // return state;
+
     return {
       posts: action.payload.posts,
     };
