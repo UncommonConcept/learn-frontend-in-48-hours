@@ -13,7 +13,7 @@ Effect('searchReddit', (searchTerm) => {
   return fetch(url)
     .then(res=>res.json())
     .then(body => {
-      Actions.saveSearchresults({results: body});
+      Actions.saveSearchResults({results: body});
     });
 });
 

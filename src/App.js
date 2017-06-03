@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'jumpstate';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
@@ -14,6 +15,8 @@ class App extends Component {
   }
 
   render() {
+    const { searchResults } = this.props;
+
     return (
       <div className="App">
         <div className="App-header">
@@ -27,9 +30,19 @@ class App extends Component {
           <input type="text" ref={this.captureInput} />
           <button onClick={this.handleClick}>Learn some Redux!</button>
         </p>
+        <div>
+          <h3>Search results:</h3>
+          <p>{JSON.stringify(searchResults, null, 2)}</p>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    searchResults: state.subredditPosts.searchResults,
+  };
+};
+
+export default connect(mapStateToProps)(App);
