@@ -139,7 +139,7 @@ import { savePosts } from './actions';
 Now, add a button to `src/App.js`. In that button's click handler, place the following:
 
 ```
-handleClick = () => {
+const handleClick = () => {
   const redditPosts = [
     { id: '123', title: 'Post One' }
   ];
