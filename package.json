@@ -8,8 +8,8 @@
     "watch-build-server": "BABEL_ENV=development babel --presets es2015,stage-0 -w server -d build/server",
     "test-server": "echo \"Error: no test specified\" && exit 1",
     "start-server": "npm run watch-build-server | NODE_ENV=development nodemon --watch build/server/ build/server/index.js",
-    "start-project": "npm start | npm run start-server",
-    "start": "node client/scripts/start.js",
+    "start-client": "node client/scripts/start.js",
+    "start": "npm run start-client | npm run start-server",
     "build": "node client/scripts/build.js",
     "test": "node client/scripts/test.js --env=jsdom"
   },
@@ -31,11 +31,16 @@
   "homepage": "https://github.com/UncommonConcept/learn-frontend-in-48-hours#readme",
   "dependencies": {
     "colors": "^1.1.2",
+    "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",
+    "jumpstate": "^2.2.2",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
-    "react-router-dom": "^4.1.1"
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",

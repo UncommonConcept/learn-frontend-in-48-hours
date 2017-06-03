@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { Actions } from 'jumpstate';
 import path from 'path';
 import './RedditMenu.css';
 
@@ -19,6 +20,17 @@ class RedditMenu extends Component {
     console.log('RedditMenu constructed');
   }
 
+  handleClick = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    const search = this.searchInput.value;
+    Actions.searchReddit(search);
+  }
+
+  captureInput = (ref) => {
+    this.searchInput = ref;
+  }
+
   render() {
     const { match } = this.props;
     console.log('RedditMenu match is: ', match);
@@ -29,7 +41,7 @@ class RedditMenu extends Component {
           <span className='Reddit-Menu-Dropdown-text'>/r/{match.params.sub || ''}</span>
         </div>
 
-        <div className='Reddit-Menu-Categories col-md-9'>
+        <div className='Reddit-Menu-Categories col-md-6'>
           {categories.map((cat) => {
             const link = match.params.sub ? path.join(match.url, cat.url) : cat.url;
 
@@ -40,6 +52,15 @@ class RedditMenu extends Component {
                      {cat.title}
                    </NavLink>
           })}
+        </div>
+
+        <div className='Reddit-Menu-Searchbox col-md-3 no-padding'>
+          <div className='Searchbox-Container'>
+            <form>
+              <input type="text" ref={this.captureInput} placeholder='Search Reddit' />
+              <button type="submit" onClick={this.handleClick}>Search!</button>
+            </form>
+          </div>
         </div>
       </div>
     );

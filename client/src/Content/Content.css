@@ -1,17 +1,17 @@
 .Content-Info-Column {
   border: 1px solid aqua;
-  height:100vh;
+  min-height:100vh;
   background: #FFF;
 }
 
 .Content-Community-Column {
   border: 1px solid lightsalmon;
-  height:100vh;
+  min-height:100vh;
   background: #FFF;
 }
 
 .Content-Main-Column {
   border: 1px solid grey;
-  height:100vh;
+  min-height:100vh;
   background: #FFF;
 }

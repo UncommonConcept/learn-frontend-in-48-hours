@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
 
 import DefaultLayout from './DefaultLayout';
@@ -20,13 +19,5 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  content: PropTypes.node,
-};
-
-App.defaultProps = {
-  content: <div className='container-div'><span>I am the very model of a modern major general!</span></div>,
-};
 
 export default App;
