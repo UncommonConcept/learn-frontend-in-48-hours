@@ -27,4 +27,7 @@ const store = createStore(reducer, initialState, applyMiddleware(...middleware))
 // Let's make our lives a little easier:
 store.subscribe(() => { console.log('Store changed: ', store.getState()); });
 
+// Just for debugging;
+window.getState = store.getState;
+
 export { store, history };
