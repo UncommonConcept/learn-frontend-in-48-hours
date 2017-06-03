@@ -3,15 +3,16 @@ import { Actions } from 'jumpstate';
 import logo from './logo.svg';
 import './App.css';
 
-const handleClick = () => {
-  const redditPosts = [
-    { id: '123', title: 'Post One' }
-  ];
-
-  Actions.savePosts(redditPosts);
-}
-
 class App extends Component {
+  handleClick = () => {
+    const search = this.input.value;
+    Actions.searchReddit(search);
+  }
+
+  captureInput = (ref) => {
+    this.input = ref;
+  }
+
   render() {
     return (
       <div className="App">
@@ -23,7 +24,8 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-          <button onClick={handleClick}>Learn some Redux!</button>
+          <input type="text" ref={this.captureInput} />
+          <button onClick={this.handleClick}>Learn some Redux!</button>
         </p>
       </div>
     );
