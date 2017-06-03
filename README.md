@@ -77,7 +77,7 @@ Now, create the reducer that will store the search results. Update the existing 
 const subredditPosts = State({
   ...
 
-  saveSearchResults(state, payload) => {
+  saveSearchResults(state, payload) {
     return {
       ...state,
       searchResults: payload.results,

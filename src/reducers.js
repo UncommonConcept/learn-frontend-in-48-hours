@@ -1,14 +1,14 @@
 import { State } from 'jumpstate';
 
 const subredditPosts = State({
-  initialState: {
+  initial: {
     posts: [],
   },
 
-  savePosts(state, payload) => {
+  savePosts(state, payload) {
     return {
       ...state,
-      posts: action.payload.posts,
+      posts: payload.posts,
     };
   },
 });

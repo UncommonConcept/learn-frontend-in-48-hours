@@ -8,7 +8,7 @@ const handleClick = () => {
     { id: '123', title: 'Post One' }
   ];
 
-  Actions.savePosts(redditPosts);
+  Actions.savePosts({posts: redditPosts});
 }
 
 class App extends Component {
