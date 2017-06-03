@@ -56,7 +56,7 @@ const history = createBrowserHistory();
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = [
-  routerMiddleware(browserHistory),
+  routerMiddleware(history),
 ];
 
 // Add the reducer to your store on the `router` key
@@ -107,7 +107,7 @@ function subredditPosts(state = initialState, action) {
   return state;
 }
 
-export {
+export default {
   subredditPosts,
 };
 ```
