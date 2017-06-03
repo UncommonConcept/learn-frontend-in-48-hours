@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { store } from './store';
-import { savePosts } from './actions';
+import { Actions } from 'jumpstate';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,7 +8,7 @@ const handleClick = () => {
     { id: '123', title: 'Post One' }
   ];
 
-  store.dispatch(savePosts(redditPosts));
+  Actions.savePosts(redditPosts);
 }
 
 class App extends Component {

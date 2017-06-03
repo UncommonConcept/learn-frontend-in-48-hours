@@ -1,16 +1,17 @@
-const initialState = {
-  posts: [],
-}
+import { State } from 'jumpstate';
 
-function subredditPosts(state = initialState, action) {
-  if(action.type === 'SUBREDDIT_POSTS_DOWNLOADED') {
+const subredditPosts = State({
+  initialState: {
+    posts: [],
+  },
+
+  savePosts(state, payload) => {
     return {
+      ...state,
       posts: action.payload.posts,
     };
-  }
-
-  return state;
-}
+  },
+});
 
 export default {
   subredditPosts,

@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import { createBrowserHistory } from 'history';
+import { CreateJumpstateMiddleware, getState } from 'jumpstate';
 
 import reducers from './reducers';
 
@@ -9,6 +10,7 @@ const history = createBrowserHistory();
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = [
+  CreateJumpstateMiddleware(),
   routerMiddleware(history),
 ];
 
@@ -25,6 +27,6 @@ const initialState = {};
 const store = createStore(reducer, initialState, applyMiddleware(...middleware));
 
 // Let's make our lives a little easier:
-store.subscribe(() => { console.log('Store changed: ', store.getState()); });
+store.subscribe(() => { console.log('Store changed: ', getState()); });
 
 export { store, history };
