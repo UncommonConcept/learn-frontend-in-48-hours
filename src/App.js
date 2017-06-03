@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import { store } from './store';
+import { savePosts } from './actions';
 import logo from './logo.svg';
 import './App.css';
+
+const handleClick = () => {
+  const redditPosts = [
+    { id: '123', title: 'Post One' }
+  ];
+
+  store.dispatch(savePosts(redditPosts));
+}
 
 class App extends Component {
   render() {
@@ -12,6 +22,9 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+        <p>
+          <button onClick={handleClick}>Learn some Redux!</button>
         </p>
       </div>
     );

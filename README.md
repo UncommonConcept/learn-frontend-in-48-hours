@@ -1,150 +1,110 @@
-# Introduction to Flux & Redux
+# Jumpstate: Getting rid of the boilerplate
 
-The Flux state management pattern extends the concept of React as a state machine. Of course, Flux and Redux exist and are happily used outside of React, but the pattern is a very strong complement to React's state machine.
+Redux is an amazing library, but it is just the infrastructure for more complex systems. Using it directly is fine, and you should know when you don't even need Redux. But if you want to use it in more sophisticated applications, the boilerplate for Redux gets tiresome:
 
-In this group of exercises we will learn how to implement the Flux pattern via a library called Redux. It is not the only popular library out there that implements this pattern; the two most popular others are Alt and Reflux. For a fully fledged solution built on top of React and Redux, the MobX framework offers a completely built-in solution.
+1. Define the action constant
+2. Define a new action creator
+3. Define a new reducer
+4. Add the reducer to the reducers list
+* Add the action creator and dispatch calls to your component
 
-We will be learning how to directly bootstrap Redux, because it is important that you know what Redux is doing. Once we know that, we'll be using a library called Jumpstate to handle some of the plumbing for us and redux boilerplate.
+In an even semi-complex app, this can become unmaintainable very quickly. There are a growing number of solutions to reduce the boilerplate; in this course we will examine one of my favorites called [Jumpstate](https://github.com/jumpsuit/jumpstate/). Jumpstate collapses steps 1-4 into a single step. In this exercise we will see how that happens.
 
-# Walkthrough
-### Install the redux packages:
-```bash
-yarn add redux react-redux react-router-redux history
-```
-NOTE: We are not actually using `react-router` or `history` in this exercise, but I want to show you how to set them up so that we know how to integrate them into our Reddit app.
+# Install
+`yarn add jumpstate`
 
-### Bootstrap Redux
-Follow along and we will discuss once we've implemented this.
+# Add the Jumpstate middleware to the store
+In store.js, add the following import:
 
-1. Open `src/index.js` and add the following imports:
-```
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-
-import { store, history } from './store';
-```
-
-2. Create the `Provider` and give it the store; create the `ConnectedRouter` component and give it the history:
 ```js
-const MainApp = (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>
-);
-
-ReactDOM.render(<MainApp />, document.getElementById('root'));
+import { CreateJumpstateMiddleware } from 'jumpstate';
 ```
 
-### Create the store
-Create a file `src/store.js`.
-
-1. Configure our imports:
-```
-import { applyMiddleware, createStore, combineReducers } from 'redux'
-import { routerReducer, routerMiddleware } from 'react-router-redux'
-import { createBrowserHistory } from 'history';
-
-import reducers from './reducers'; // I know we don't have this file yet.
-```
-
-2. Create our history and configure our store inputs:
-```
-// Create a history of your choosing (we're using a browser history in this case)
-const history = createBrowserHistory();
-
-// Build the middleware for intercepting and dispatching navigation actions
+Update the store middleware to include the Jumpstate middleware:
+```js
 const middleware = [
-  routerMiddleware(browserHistory),
+  CreateJumpstateMiddleware(),
+  routerMiddleware(history),
 ];
-
-// Add the reducer to your store on the `router` key
-const reducer = combineReducers({
-  ...reducers,
-  router: routerReducer
-});
 ```
 
-// Finally, create the store:
-```
-const initialState = {};
+# Update your reducer
+Change `src/reducers.js` to look import Jumpstate:
 
-// Also apply our middleware for navigating
-const store = createStore(reducer, initialState, applyMiddleware(middleware));
-```
-
-// Let's make our lives a little easier:
-store.subscribe(() => {
-  console.log('Store changed: ', store.getState());
-});
-
-3. Export the store and history:
-```
-export { store, history };
+```js
+import { State } from 'jumpstate';
 ```
 
-### Create a simple reducer
-Create a file `src/reducers.js`.
+Now, we will alter our reducer to use Jumpstate:
+```js
+const subredditPosts = State({
+  initialState: {
+    posts: [],
+  },
 
-Reducers are functions of pure state. I almost never need to import anything in these files. If you do, you are probably doing things in your reducer that you should not be, because external packages suggest your reducer is doing complex data processing, which is innappropriate for a reducer.
-
-1. Create a very simple reducer that looks like this:
-```
-const initialState = {
-  posts: [],
-}
-
-function subredditPosts(state = initialState, action) {
-  if(action.type === 'SUBREDDIT_POSTS_DOWNLOADED') {
+  savePosts(state, payload) => {
     return {
+      ...state,
       posts: action.payload.posts,
     };
-  }
+  },
+});
 
-  return state;
-}
-
-export {
+export default {
   subredditPosts,
 };
 ```
 
-### Create a simple action/action creator
-The store is updated via *actions* that are *dispatched* on the store.
+You will notice that the function inside the State object is the same name as the action creator we have in the `src/actions.js` file. In fact - go ahead and delete the file. It is no longer needed.
 
-1. Create a file called `actions.js`, and put the following:
-```
-const savePosts = (posts) => {
-  return {
-    type: 'SUBREDDIT_POSTS_DOWNLOADED',
-    payload: { posts },
-  };
-};
+In Jumpstate, the State object serves as action, action creator, and reducer, all rolled into one. This makes managing your state processing code much more straightforward.
 
-export {
-  updatePosts,
-};
-```
+## Using Jumpstate
+If you noticed, the problem with dispatching action creators everywhere is that you need to import 2 things, everywhere you want to interact with the state:
 
-### Finally, use our shiny new Redux setup
-1. In `src/App.js` import the store:
+1. The store, in order to call dispatch()
+2. The action creators you want to dispatch
+
+This also can get difficult to manage in any reasonably sized application. Jumpstate provides a singleton called `Actions` that performs both of these tasks for you, so that all you ever need to import is `Actions`. Let's modify `src/App.js` to do just that.
+
+### Update App.js
+Open `src/App.js` and delete the store and action imports.
+
+Now add the Jumpstate import:
 ```
-import { store } from './store';
+import { Actions } from 'jumpstate';
 ```
 
-Now, add a button to `src/App.js`. In that button's click handler, place the following:
-
+Now replace the following line:
 ```
-handleClick = () => {
-  const redditPosts = [
-    { id: '123', title: 'Post One' }
-  ];
-
-  store.dispatch(savePosts(redditPosts));
-}
+store.dispatch(savePosts(redditPosts));
 ```
 
-Now, run the app and click the button. Look at the command line to see what was printed.
+With the Jumpstate version:
+```
+Actions.savePosts(redditPosts);
+```
 
-The next branch starts from this completed work and will show you how you can then use this data in your React components.
+Simpler, no?
+
+### Reading the state
+In our initial setup in `src/store.js`, we added a subscriber to the state to print out the state whenever it changes:
+```
+store.subscribe(() => { console.log('Store changed: ', store.getState()); });
+```
+
+In this, we are calling `store.getState()` to get the current state. The problem is, again, we need to import the store everywhere to do this. The problem with that is, some Redux setups do not allow you to create or import a store singleton - we have only done that in this application because it was easy to do. In some apps, the store is created in a place where it cannot be easily extracted. So how can we get access to the current state?
+
+Jumpstate provides a `getState` singleton that allows you to get the state anywhere in your app. Let's change our printing function in `src/store.js` to use it:
+
+```
+import { getState } from 'jumpstate';
+```
+
+Now change the console log to use it:
+```
+store.subscribe(() => { console.log('Store changed: ', getState()); });
+```
+
+### Summary
+What we have used so far is fairly simple. We will see in a later lesson how to connect all of this to React, and how useful these utilities really are.
