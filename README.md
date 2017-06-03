@@ -61,7 +61,7 @@ Now, change the button click to capture the value of the input box:
 const search = this.input.value;
 ```
 
-Make sure to move the `handleClick` function inside the class, and change the `onClick` property to point to `this.handleClick`
+Make sure to move the `handleClick` function inside the class, remove the `const` modifier, and change the `onClick` property to point to `this.handleClick`
 
 Now, create an Effect that will search reddit:
 ```js
