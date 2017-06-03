@@ -1,16 +1,12 @@
-# Bringing React-Router into the Reddit application
+# Implement Redux in the Reddit app
 
-In the previous exercises we saw how to install, configure, and use React Router v4. In this exercise, we will use that knowledge to implement the router in our Reddit project.
+In the previous exercises we saw how to install, configure, and use `Redux`, `Jumpstate`, and `react-redux`. We walked through enough examples that we are now ready to begin integrating this into our app.
 
-By now, you should recognize the conventions being used by React Router v4 as being very similar to routing in Express. Each component defines what they render for their own route, as well as defining the first-level routes immediately below them.
+We need to be able to do the following with Redux and Jumpstate:
 
-Without laboring the details, complete the following exercises in class:
+1. Trigger the API requests that will allow us to download data from our Reddit API.
+2. Store the results of those requests into our store
+3. Provide the data to our React components to display data
+4. When the data changes (for example we navigate to a different page), the displayed data should change too
 
-* Create the Root component to house the entire Routed application
-* Adjust the App component to define the application's routes. We will probably only have 3 routes:
-    * Homepage
-    * Subreddit
-    * Post
-* Adjust the App component to define what it renders for the home route - this should be the Reddit homepage
-* Implement the subpages
-
+We will work on this the rest of the afternoon together.
