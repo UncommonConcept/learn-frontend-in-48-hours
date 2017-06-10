@@ -17,7 +17,9 @@ We will add a simple example of animating in the content containers to demonstra
 ```js
 <CSSTransitionGroup
   transitionName="example"
-  transitionEnterTimeout={500}
+  transitionAppear={true}
+  transitionAppearTimeout={1000}
+  transitionEnterTimeout={1000}
   transitionLeaveTimeout={300}>
 
   put the 3 columns here!
@@ -31,15 +33,26 @@ We will add a simple example of animating in the content containers to demonstra
   position: relative;
 }
 
-.example-enter {
+.example-enter, .example-appear {
   opacity: 0.01;
-  top: -50px;
 }
 
-.example-enter.example-enter-active {
+.App-layout-col-left.example-appear {
+  left: -50px;
+}
+.App-layout-col-content.example-appear {
+  top: -50px;
+}
+.App-layout-col-right.example-appear {
+  bottom: -50px;
+}
+
+.example-enter.example-enter-active, .example-appear.example-appear-active {
   opacity: 1;
-  top: initial;
-  transition: opacity 500ms ease-in, top 500ms ease-in;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: all 1000ms ease-in;
 }
 
 .example-leave {
@@ -49,7 +62,7 @@ We will add a simple example of animating in the content containers to demonstra
 .example-leave.example-leave-active {
   opacity: 0.01;
   top: -50px;
-  transition: opacity 300ms ease-in, top 500ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 ```
 
