@@ -23,9 +23,16 @@
 .App-header-title {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -50px;
+  opacity: 0;
   margin: 0;
   padding: 10px;
+  transition: left 500ms ease-in;
+}
+
+.App-header-title.transitioned {
+  left: 0;
+  opacity: 1;
 }
 
 .App-Header-Menu {
