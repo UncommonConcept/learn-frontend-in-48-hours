@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Actions } from 'jumpstate';
 import path from 'path';
-import './RedditMenu.css';
+import './RedditMenu.scss';
 
 const categories = [
   { url: '/hot', title: 'Hot' },
