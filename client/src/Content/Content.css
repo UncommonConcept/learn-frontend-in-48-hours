@@ -15,3 +15,39 @@
   min-height:100vh;
   background: #FFF;
 }
+
+.App-layout-col-left, .App-layout-col-content, .App-layout-col-right {
+  position: relative;
+}
+
+.example-enter, .example-appear {
+  opacity: 0.01;
+}
+
+.App-layout-col-left.example-appear {
+  left: -50px;
+}
+.App-layout-col-content.example-appear {
+  top: -50px;
+}
+.App-layout-col-right.example-appear {
+  bottom: -50px;
+}
+
+.example-enter.example-enter-active, .example-appear.example-appear-active {
+  opacity: 1;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: all 1000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  top: -50px;
+  transition: opacity 300ms ease-in;
+}
