@@ -104,3 +104,10 @@ const subreddits = [
   'LifeProTips',
 ];
 ```
+
+# What's Next
+Reddit also has an API to get details about the Subreddit, that we can fill into the side panels and the banner image, here:
+
+https://www.reddit.com/r/askreddit/about.json
+
+Can you use that API to extend our project to add that data to the screen?
