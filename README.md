@@ -94,9 +94,10 @@ The resulting config should look like:
       },
 ...
 ```
-3. Use scss files!
-4. Rename `client/src/Header/RedditMenu.css` to `RedditMenu.scss`
-5. Open `client/src/Header/RedditMenu.js` and change the imported CSS filename to match
-6. In `RedditMenu.scss`, change lines 35-60 (there are 3 groups of CSS classes) to be nested SCSS. We can do this together.
-7. Run the app. You should see the app continue to work like normal.
+3. Add `/\.scss$/,` to the list of url-loader exclusions on line 115 in the webpack config
+4. Use scss files!
+5. Rename `client/src/Header/RedditMenu.css` to `RedditMenu.scss`
+6. Open `client/src/Header/RedditMenu.js` and change the imported CSS filename to match
+7. In `RedditMenu.scss`, change lines 35-60 (there are 3 groups of CSS classes) to be nested SCSS. We can do this together.
+8. Run the app. You should see the app continue to work like normal.
 
