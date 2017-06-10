@@ -13,7 +13,26 @@
 .Content-Main-Column {
   border: 1px solid grey;
   min-height:100vh;
+  /*max-height: 100vh;*/
   background: #FFF;
+  overflow-y: scroll;
+}
+
+.Content-Main-Column h3 {
+  margin: 7px;
+}
+
+.Pagination-container {
+  text-align: center;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.Pagination-container .Pagination-link.back {
+  padding-right: 15px;
+}
+.Pagination-container .Pagination-link a {
+  cursor: pointer;
 }
 
 .App-layout-col-left, .App-layout-col-content, .App-layout-col-right {

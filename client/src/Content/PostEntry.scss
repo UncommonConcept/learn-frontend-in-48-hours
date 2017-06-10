@@ -1,0 +1,32 @@
+.Post-container {
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.Post-image-container, .Post-info-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.Post-info-container {
+  margin: 10px;
+  max-width: 400px;
+}
+
+.Post-count {
+  text-align: center;
+}
+
+.Post-info-line {
+  font-size: 12px;
+}
+
+.Post-info-line span {
+  margin-right: 10px;
+}
+
+.Post-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 5px;
+}

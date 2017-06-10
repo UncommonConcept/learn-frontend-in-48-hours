@@ -8,13 +8,19 @@ Hook((action) => {
   }
 })
 
-Effect('downloadPosts', ({sub, category}) => {
-  // const url = 'http://reddit.com/top/.json';
+Effect('downloadPosts', ({sub, category, before, after}) => {
   let url;
   if(!sub) {
     url = `${API_HOST}/${category}`;
   } else {
-    url = `${API_HOST}/subreddit/${sub}/${category}`;
+    const catUrl = category ? `/${category}` : '';
+    url = `${API_HOST}/subreddit/${sub}${catUrl}`;
+  }
+
+  if(before) {
+    url = `${url}?before=${before}`;
+  } else if (after) {
+    url = `${url}?after=${after}`;
   }
 
   return fetch(url)
@@ -30,7 +36,7 @@ Effect('searchReddit', (searchTerm) => {
     return fetch(url)
       .then(res=>res.json())
       .then(body => {
-        Actions.saveSearchResults({results: body, searchTerm});
+        Actions.saveSearchResults({results: body.data, searchTerm});
       });
   }
   return Promise.resolve();

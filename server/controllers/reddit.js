@@ -1,5 +1,7 @@
 import HttpStatus from 'http-status-codes';
-import { getRedditContent } from '../utils';
+import { getRedditContent, getRedditPath } from '../utils';
+
+const limit = 10;
 
 export class Reddit {
   reddit = null;
@@ -36,9 +38,11 @@ export class Reddit {
     // console.log('====== route ======');
     // console.log(req.route);
 
+    const redditPath = getRedditPath(this.reddit, req.category, req.query.before, req.query.after, limit);
     console.log(`Reddit: Getting ${this.reddit}/${req.category ? req.category : ''}`);
+    console.log('Fetching ', redditPath);
 
-    getRedditContent(this.reddit, req.category)
+    getRedditContent(redditPath)
       .then((body) => {
         res.status(HttpStatus.OK).json(body);
       })

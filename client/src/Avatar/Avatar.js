@@ -4,12 +4,12 @@ import PicComponent from './PicComponent';
 import './Avatar.css';
 
 const Avatar = (props) => {
-  const { user } = props;
+  const { link, image } = props;
 
   return (
     <div className='avatar-box'>
-      <LinkComponent href={'https://reddit.com/u/' + user}>
-        <PicComponent src='http://placehold.it/128x128' />
+      <LinkComponent href={link} target='_blank'>
+        <PicComponent src={image} />
       </LinkComponent>
     </div>
   );

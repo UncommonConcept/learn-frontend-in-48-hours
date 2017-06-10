@@ -30,4 +30,8 @@ const store = createStore(reducer, initialState, composeEnhancers(applyMiddlewar
 // Let's make our lives a little easier:
 store.subscribe(() => { console.log('Store changed: ', getState()); });
 
+if(process.env.NODE_ENV === 'development') {
+  window.getState = store.getState;
+}
+
 export { store, history };

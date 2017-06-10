@@ -39,12 +39,6 @@ const categories = [
 ];
 
 class RedditMenu extends Component {
-  constructor(props) {
-    super(props);
-
-    console.log('RedditMenu constructed');
-  }
-
   handleClick = (event) => {
     event.stopPropagation();
     event.preventDefault();
@@ -60,7 +54,6 @@ class RedditMenu extends Component {
 
   render() {
     const { match } = this.props;
-    console.log('RedditMenu match is: ', match);
 
     return (
       <div className='Reddit-Menu'>
