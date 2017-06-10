@@ -1,0 +1,45 @@
+.Subreddit-menu-button {
+  min-width: 160px;
+
+  & .caret {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+  }
+}
+
+.Subreddit-menu-text {
+  margin-right: 7px;
+}
+
+.Subreddit-menu-items-container {
+  visibility: collapse;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  position: absolute;
+  top: 33px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  z-index: 5;
+  transition: height 200ms ease-out;
+
+  & > ul {
+    margin: 10px;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    font-size: 12px;
+
+    & > li {
+      margin: 3px 0;
+    }
+  }
+
+  &.active {
+    visibility: visible;
+    height: auto;
+  }
+}

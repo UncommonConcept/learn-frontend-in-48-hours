@@ -3,7 +3,32 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Actions } from 'jumpstate';
 import path from 'path';
+
+import SubredditMenu from './SubredditMenu';
 import './RedditMenu.scss';
+
+const subreddits = [
+  'AskReddit',
+  'funny',
+  'todayilearned',
+  'science',
+  'worldnews',
+  'pics',
+  'IAmA',
+  'gaming',
+  'videos',
+  'movies',
+  'news',
+  'Music',
+  'aww',
+  'gifs',
+  'explainlikeimfive',
+  'askscience',
+  'EarthPorn',
+  'books',
+  'television',
+  'LifeProTips',
+];
 
 const categories = [
   { url: '/hot', title: 'Hot' },
@@ -40,7 +65,7 @@ class RedditMenu extends Component {
     return (
       <div className='Reddit-Menu'>
         <div className='Reddit-Menu-Dropdown col-md-3'>
-          <span className='Reddit-Menu-Dropdown-text'>/r/{match.params.sub || ''}</span>
+          <SubredditMenu subreddit={match.params.sub} subredditList={subreddits} />
         </div>
 
         <div className='Reddit-Menu-Categories col-md-6'>
@@ -60,7 +85,7 @@ class RedditMenu extends Component {
           <div className='Searchbox-Container'>
             <form>
               <input type="text" ref={this.captureInput} placeholder='Search Reddit' />
-              <button type="submit" onClick={this.handleClick}>Search!</button>
+              <button className='btn btn-primary' type="submit" onClick={this.handleClick}>Search!</button>
             </form>
           </div>
         </div>
