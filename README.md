@@ -1,102 +1,93 @@
-# Styling in React
+# Animations in React
 
-Styling your application in React is substantially similar to most other frameworks. You still use CSS, and you can optionally use any number of frameworks to aid in managing your CSS, including SASS, LESS, Stylus, CSS-Modules, etc.
+You can create animations in React the same as any other frontend framework; using CSS. But for more interesting animations in React, like animating items in and out of the DOM, pure CSS is not enough - it has no access to the moment an element is created. This is where React provides some additional tools to create compelling animations.
 
-There are a growing number of solutions written to help manage CSS within your Javascript, under the philosophy of co-locating your CSS with the JS of the component to which it belongs. Angular itself formalizes this relationship by requiring a component's CSS to be co-located with the component.
+## CSSTransitionGroup
+The `react-transition-group`, maintained by a group of React core contributors and originally written by Facebook, provides a set of tools that allow you to create sophisticated animations. We will not examine this library in detail; just enough to see how to do some basic animations using the high-level API, the `CSSTransitionGroup`.
 
-Some of these solutions are:
-- Aphrodite
-- Radium
-- styled-components
-- jsxstyle
-- styled-jsx
-- React Style
+Basically, `CSSTransitionGroup` allows you to specify the CSS classes that should apply to an element at various points of its lifecycle. **This is different than the React component lifecycle**. This lifecycle specifically refers to the Component's DOM node's life in the browser itself - the moment is appears in the DOM, the moment it gets removed, etc.
 
-This is not an exhaustive list but these are the most popular.
+We will add a simple example of animating in the content containers to demonstrate how to use the library; this application is not a good candidate where animations are needed to improve the experience.
 
-However, the best practices and the most well-maintained solutions have not emerged yet, so I will instead focus on what HAS emerged as best practice, and the tools we use to manage them.
+# Installation
+1. Install the package: `yarn add react-transition-group`
+2. Open up `client/src/Content/Content.js` and add the import: `import { CSSTransitionGroup } from 'react-transition-group';`
+3. We are going to wrap the 3 content columns in this file in a new component. Currently, they are nested inside the div `<div className="App-intro container-fluid no-padding">`. Instead, nest these three columns inside the following:
 
-***It is not necessary to use any tooling at all***. React is just as happy using plain CSS as any framework. Only pick a framework if the capability it adds to your development is worth the complexity it adds to your application. Using the `css-loader` in webpack, you are more than capable of producing a perfectly functional CSS bundle.
+```js
+<CSSTransitionGroup
+  transitionName="example"
+  transitionEnterTimeout={500}
+  transitionLeaveTimeout={300}>
 
-# SCSS
-LESS used to be the most popular "CSS Framework", but it has been quickly replaced with SCSS. SCSS is more succinct, stylistically more similar to plain CSS, more powerful, and has better tooling. It allows your CSS to be more semantically meaningful than vanilla CSS, and has quickly become the most popular choice for CSS maintenance.
+  put the 3 columns here!
 
-### Features
-**SCSS is just CSS** with a bit of syntactic sugar on top of it. The primary feature is the ability to nest classes, in the same structure as you nest your DOM elements:
+</CSSTransitionGroup>
+```
+4. Now we need to add the matching CSS classes. Add the following to `client/src/Content/Content.css`:
 
 ```css
-.some-class {
-  display: block;
-  color: blue;
+.App-layout-col-left, .App-layout-col-content, .App-layout-col-right {
+  position: relative;
+}
 
-  &.sibling-class {
-    color: red;
-  }
+.example-enter {
+  opacity: 0.01;
+  top: -50px;
+}
 
-  & .some-deeper-class {
-    color: white;
-  }
+.example-enter.example-enter-active {
+  opacity: 1;
+  top: initial;
+  transition: opacity 500ms ease-in, top 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  top: -50px;
+  transition: opacity 300ms ease-in, top 500ms ease-in;
 }
 ```
 
-The second killer feature of **SCSS** is its support for variables. You can easily theme an entire application by maintaing a standard color palette, and using the variable names everywhere:
+You'll notice that the transition timings match the values that were given to React. This is so that React can orchestrate adding and removing the classes at the same time the browser is rendering the CSS transitions. These don't need to match - you can create some interesting patterns by making them different.
 
-```css
-$highlight-color: #FF0;
-$background-color-dark: #011;
+What **DOES** need to match is the word `example`. You passed that as the `transitionName` to the `CSSTransitionGroup` component; it **MUST** match the prefix you see on the CSS classes.
 
-.main-container {
-  background-color: $background-color-dark;
-}
+That concludes this exercise. There is obviously a ton more you can do with this; and there are a growing number of libraries designed to make it simple and declarative.
+
+# Complete the Reddit application
+We will use the rest of our time to complete the application. We need to see the following:
+1. Implement the API calls for both the Reddit homepage (and categories), and all the subreddits (and categories). These should be called on route changes, that is, when you click the link to navigate to a different Subreddit or category.
+2. Completely implement the searching
+3. Build a component to display the Reddit post entries, and render it in the content area
+4. The post area should not display all posts. The easy thing to do is make the content box scroll. Even better, let's implement paging. Remember, Reddit pages by using the `after` parameter in the request; the value is the ID of the last post you currently see.
+5. Build the dropdown list of available subreddits. There are over 10,000 of them, which is why Reddit does not provide such a list, but we will make a simple one using the following list of subreddits. You can use your own of course, but for the lazy here are the top 20:
+
 ```
-
-The tooling for SCSS is extremely well developed for React and Webpack. Some of the tools are already installed in our application, and you can see them in the `client/config/webpack.config.*.js` files:
-
-* `style-loader` - collects all CSS from everywhere and either dumps it into the `<head>` of your page, or into a CSS bundle file.
-* `css-loader` - captures the `import './styles.css'` and `require('./styles.css')` calls inside your app
-* `postcss-loader` - pluggable pre-processor for your CSS to add things like vendor prefixes, remove unnecessary styles, and add source maps
-* `autoprefixer` - this is the tool that plugs into `postcss` to actually add vendor prefixes
-
-We require a few more tools to add support for SCSS. We will proceed to install them now.
-
-## Installation
-1. `yarn add --dev sass-loader node-sass`
-2. Add the loader configuration to webpack. Open `client/config/webpack.config.dev.js`, find the css loader, and add an additional entry below it:
-```js
-      {
-        test: /\.scss$/,
-        loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
-      },
+const subreddits = [
+  'AskReddit',
+  'funny',
+  'todayilearned',
+  'science',
+  'worldnews',
+  'pics',
+  'IAmA',
+  'gaming',
+  'videos',
+  'movies',
+  'news',
+  'Music',
+  'aww',
+  'gifs',
+  'explainlikeimfive',
+  'askscience',
+  'EarthPorn',
+  'books',
+  'television',
+  'LifeProTips',
+];
 ```
-
-The resulting config should look like:
-```js
-...
-      // "postcss" loader applies autoprefixer to our CSS.
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader turns CSS into JS modules that inject <style> tags.
-      // In production, we use a plugin to extract that CSS to a file, but
-      // in development "style" loader enables hot editing of CSS.
-      {
-        test: /\.css$/,
-        loader: 'style!css?importLoaders=1!postcss'
-      },
-      // Our new loader is here
-      {
-        test: /\.scss$/,
-        loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
-      },
-      // JSON is not enabled by default in Webpack but both Node and Browserify
-      // allow it implicitly so we also enable it.
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
-...
-```
-3. Use scss files!
-4. Rename `client/src/Header/RedditMenu.css` to `RedditMenu.scss`
-5. Open `client/src/Header/RedditMenu.js` and change the imported CSS filename to match
-6. In `RedditMenu.scss`, change lines 35-60 (there are 3 groups of CSS classes) to be nested SCSS. We can do this together.
-7. Run the app. You should see the app continue to work like normal.
-
