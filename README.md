@@ -77,7 +77,7 @@ We will use the rest of our time to complete the application. We need to see the
 1. Implement the API calls for both the Reddit homepage (and categories), and all the subreddits (and categories). These should be called on route changes, that is, when you click the link to navigate to a different Subreddit or category.
 2. Completely implement the searching
 3. Build a component to display the Reddit post entries, and render it in the content area. This component should contain at least the post's title, thumbnail image, date, link, name of the user who posted it, and number of upvotes.
-4. The post area should not display all posts. The easy thing to do is make the content box scroll. Even better, let's implement paging. Remember, Reddit pages by using the `after` parameter in the request; the value is the ID of the last post you currently see.
+4. The post area should not display all posts. The easy thing to do is make the content box scroll. Even better, let's implement paging. Remember, Reddit pages by using the `after` parameter in the request; the value is the `id` of the last post you currently see.
 5. Build the dropdown list of available subreddits. There are over 10,000 of them, which is why Reddit does not provide such a list, but we will make a simple one using the following list of subreddits. You can use your own of course, but for the lazy here are the top 20:
 
 ```
