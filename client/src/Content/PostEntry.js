@@ -70,17 +70,18 @@ ups: 5966
 
 const PostEntry = (props) => {
   const { post } = props;
+  const thumb = post.thumbnail && post.thumbnail !== 'self' && post.thumbnail !== 'default' ? post.thumbnail : defaultImage;
 
   return (
     <div className='Post-container container-fluid'>
       <div className='Post-image-container'>
-        <Avatar link={post.url} image={post.thumbnail || defaultImage} />
+        <Avatar link={post.url} image={thumb} />
         <div className='Post-count'>{post.ups}</div>
       </div>
 
       <div className='Post-info-container'>
         <div className='Post-info-line'>
-          <span className='Post-subreddit'><Link to={`/subreddit/${post.subreddit}`}>{`/r/${post.subreddit}`}</Link></span>
+          <span className='Post-subreddit'><a href={post.url} target='_blank'>{`/r/${post.subreddit}`}</a></span>
           -- <span className='Post-date'>{(new Date(post.created_utc*1000)).toLocaleDateString()}</span>
           -- <span className='Post-author'>
               <LinkComponent href={`https://www.reddit.com/u/${post.author}`}>{post.author}</LinkComponent>

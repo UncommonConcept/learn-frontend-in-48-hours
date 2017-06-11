@@ -11,7 +11,7 @@ Hook((action) => {
 Effect('downloadPosts', ({sub, category, before, after}) => {
   let url;
   if(!sub) {
-    url = `${API_HOST}/${category}`;
+    url = `${API_HOST}/${category || ''}`;
   } else {
     const catUrl = category ? `/${category}` : '';
     url = `${API_HOST}/subreddit/${sub}${catUrl}`;

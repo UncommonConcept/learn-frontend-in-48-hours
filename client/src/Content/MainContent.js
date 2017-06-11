@@ -74,7 +74,7 @@ class MainContent extends React.Component {
 
   render() {
     const { match, posts, searchResults, searchTerm } = this.props;
-    const { sub } = this.state;
+    const { sub, category } = this.state;
 
     // {resultData.before ? <span>The previous page starts before `{resultData.before}`<br /></span> : ''}
     // {resultData.after ? <span>The next page starts after `{resultData.after}`<br /></span> : ''}
@@ -88,9 +88,11 @@ class MainContent extends React.Component {
 
     const resultData = (!searchResults ? posts : searchResults) || {};
 
+    const categoryPath = category ? ` >> ${category}` : '';
+
     return (
       <div>
-        <h3>{!searchResults ? `Subreddit: ${sub}` : 'Search results for: ' + searchTerm}</h3>
+        <h3>{!searchResults ? `Viewing: ${sub || 'reddit'} ${categoryPath}` : `Search results for: ${searchTerm}`}</h3>
         {this.renderPosts(resultData.children || [])}
         {this.renderPagination(match, resultData)}
       </div>
